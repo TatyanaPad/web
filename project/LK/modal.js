@@ -1,3 +1,9 @@
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  }
+
 var modal = document.getElementsByClassName("modal")[0];
 var btn = document.getElementsByClassName("bron");
 var edit = document.getElementsByClassName("edit");
@@ -78,50 +84,26 @@ for (var i = 0; i < send.length; i++) {
         console.log(guid);
         if (this.id == "edit") {
             uuid = this.value
-            fetch("/api/orders/" + uuid, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "date": date,
-                    "time": time,
-                    "guide_id": guid,
-                    "duration": counTime,
-                    "persons": peoples,
-                    "option_first": op1.toString(),
-                    "option_second": op2.toString(),
-                    "route_id": routeName,
-                    "price": price,
-                    "student_id": mainDiv.getElementsByClassName("price")[0].value
-                })
-            })
-            .then(function() {
-                window.location.href = "/order/";
-            })
+            var cookie = "order" + uuid + "=" + uuid + "|" + guid + "|" + routeName + "|" 
+            cookie += date  + "|" + time + "|" + counTime + "|"
+            cookie += peoples + "|" + price + "|" + op1.toString() + "|"
+            cookie += op2.toString() + "|" + mainDiv.getElementsByClassName("price")[0].value;
+            cookie += "; path=/order"
+            document.cookie = cookie
+            
+            window.location.href = "/order/";
         } else {
-            // send post fetch
-            fetch("/api/orders/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "date": date,
-                    "time": time,
-                    "guide_id": guid,
-                    "duration": counTime,
-                    "persons": peoples,
-                    "option_first": op1.toString(),
-                    "option_second": op2.toString(),
-                    "route_id": routeName,
-                    "price": price,
-                    "student_id": mainDiv.getElementsByClassName("price")[0].value
-                })
-            })
-            .then(function() {
-                window.location.href = "/order/";
-            })
+            // set cookie
+            uuid = uuidv4()
+            var cookie = "order" + uuid + "=" + uuid + "|" + guid + "|" + routeName + "|" 
+            cookie += date  + "|" + time + "|" + counTime + "|"
+            cookie += peoples + "|" + price + "|" + op1.toString() + "|"
+            cookie += op2.toString() + "|" + mainDiv.getElementsByClassName("price")[0].value
+            cookie += "; path=/order"
+            document.cookie = cookie 
+            console.log(cookie);
+            
+            window.location.href = "/order/";
         }  
     }
 }

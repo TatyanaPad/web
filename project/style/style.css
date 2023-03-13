@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #F8F8FF ;
+    background-color: #1f2023 ;
     margin: 0;
     font-family: 'Kanit', sans-serif;
 }
@@ -14,9 +14,9 @@ body {
 }
 
 .header {
-    color: #000;
+    color: #d3d4d5;
     min-height: 8vh;
-    background-color: #F4F4FA;
+    background-color: #27292d;
     padding-left: 1vh;
     display: grid;
     align-items: center;
@@ -25,42 +25,42 @@ body {
 
 .footer {
     min-height: 92vh;
-    background-color: #F8F8FF ;
+    background-color: #1f2023 ;
     display: grid;
-    grid-template-rows: 33vh repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .footer_about {
     min-height: 92vh;
-    background-color: #F8F8FF ;
+    background-color: #1f2023 ;
 }
 
 .footer_map {
     min-height: 92vh;
-    background-color: #F8F8FF ;
+    background-color: #1f2023 ;
     display: grid;
     grid-template-rows: 1fr;
 }
 
 .map {
-    background-color: #F4F4FA;
+    background-color: #27292d;
     border-radius: 1vh;
     margin: 1vh;
     padding: 1vh;
     text-align: center;
-    color: #000;
+    color: #d3d4d5;
 }
 
 .master {
-    color: #000;
+    color: #d3d4d5;
     text-shadow: 0 0 3vh var(--color-button);
 }
 
 .content-block {
     text-align: center;
     max-width: 100%;
-    color: #000;
-    background-color: #F4F4FA;
+    color: #d3d4d5;
+    background-color: #27292d;
     border-radius: 1vh;
     margin: 1vh;
     padding: 1vh;
@@ -149,13 +149,17 @@ td > img {
     border: 0;
     background-color: var(--color-button);
 }
+.navigation > button:hover {
+    background-color: #ffff69;
+    font-size: 1.4vh;
+}
 
 .more {
     text-align: center;
     padding: 1vh;
     font-family: 'Kanit', sans-serif;
     font-size: 1.2vh;
-    color: #000;
+    color: #d3d4d5;
     box-shadow: 0 0 1vh var(--color-button);
     border-radius: 1vh;
     border: 0;
@@ -193,7 +197,7 @@ td > img {
     margin: 1vw;
     font-family: 'Kanit', sans-serif;
     font-size: 1.2vh;
-    color: #000;
+    color: #d3d4d5;
     box-shadow: 0 0 1vh var(--color-button);
     border-radius: 1vh;
     border: 0;
@@ -201,11 +205,11 @@ td > img {
 }
 
 .table {
-    background-color: #F4F4FA;
+    background-color: #27292d;
     border-radius: 1vh;
     margin: 1vh;
     padding: 1vh;
-    color: #000;
+    color: #d3d4d5;
 }
 
 .table > table {
@@ -224,7 +228,7 @@ td > img {
     margin: 0;
     background-color: transparent;
     border: 0;
-    color: #000;
+    color: #d3d4d5;
 }
 
 .ghoste {

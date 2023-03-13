@@ -4,13 +4,9 @@ var modal = document.getElementsByClassName("modal")[0];
 
 for (var i = 0; i < onDelete.length; i++) {
     onDelete[i].onclick = function() {
-        fetch("/api/orders/" + this.id, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        });
-
+        // ckear cookie
+        var name = "order" + this.id + "= ;expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        document.cookie = name
         this.parentNode.parentNode.parentNode.remove();
     };
 }

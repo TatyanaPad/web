@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,400;0,500;1,100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/modal.css">
     <title>Заказы</title>
 </head>
@@ -37,34 +36,57 @@
                           <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {{ range $item, $key := .Arr }}
-                            <tr>
-                                <td>{{ $item }}</td>
-                                <td>{{ index $key 2 }}</td>
-                                <td>{{ index $key 3 }}</td>
-                                <td>{{ index $key 7 }}</td>
-                                <td>
-                                    <div class="chouse">
-                                        <button class="viuew">👁</button>
-                                        <button class="edit" id="{{ index $key 0 }}">✎</button>
-                                        <button class="delete" id="{{ index $key 0 }}">🗑</button>
-                                        <p class="guid-name ghoste">{{ index $key 1 }}</p>
-                                        <p class="route-name ghoste">{{ index $key 2 }}</p>
-                                        <p class="date ghoste">{{ index $key 3 }}</p>
-                                        <p class="time ghoste">{{ index $key 4 }}</p>
-                                        <p class="duration ghoste">{{ index $key 5 }}</p>
-                                        <p class="persons ghoste">{{ index $key 6 }}</p>
-                                        <p class="price ghoste">{{ index $key 7 }}</p>
-                                        <p class="optionFirst ghoste">{{ index $key 8 }}</p>
-                                        <p class="optionSecond ghoste">{{ index $key 9 }}</p>
-                                        <p class="start_price ghoste">{{ index $key 10 }}</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        {{ end }}
+                    <tbody id="tbd">
+                        <script>
+                            cookieslist = document.cookie.split(';');
+                            const tbd = document.getElementById("tbd");
+                            for (var i = 0; i < cookieslist.length; i++) {
+                                var tr = document.createElement("tr");
+                                tbd.appendChild(tr)
+
+                                result = cookieslist[i].split('=')[1].split("|");
+                                console.log(i);
+
+                                td1 = document.createElement("td")
+                                td1.innerHTML = i
+
+                                td2 = document.createElement("td")
+                                td2.innerHTML = result[2]
+
+                                td3 = document.createElement("td")
+                                td3.innerHTML = result[3]
+
+                                td4 = document.createElement("td")
+                                td4.innerHTML = result[7]
+
+                                td5 = document.createElement("td")
+                                data = '<div class="chouse">'
+                                data += '<button class="viuew">👁</button>'
+                                data += '<button class="edit" id="'+result[0]+'">✎</button>'
+                                data += '<button class="delete" id="'+result[0]+'">🗑</button>'
+                                data += '<p class="guid-name ghoste">'+result[1]+'</p>'
+                                data += '<p class="route-name ghoste">'+result[2]+'</p>'
+                                data += '<p class="date ghoste">'+result[3]+'</p>'
+                                data += '<p class="time ghoste">'+result[4]+'</p>'
+                                data += '<p class="duration ghoste">'+result[5]+'</p>'
+                                data += '<p class="persons ghoste">'+result[6]+'</p>'
+                                data += '<p class="price ghoste">'+result[7]+'</p>'
+                                data += '<p class="optionFirst ghoste">'+result[8]+'</p>'
+                                data += '<p class="optionSecond ghoste">'+result[9]+'</p>'
+                                data += '<p class="start_price ghoste">'+result[10]+'</p>'
+                                data += '</div>'
+                                td5.innerHTML = data
+                                
+                                tr.appendChild(td1);
+                                tr.appendChild(td2);
+                                tr.appendChild(td3);
+                                tr.appendChild(td4);
+                                tr.appendChild(td5);
+                            }
+                        </script>
                     </tbody>
                 </table>
+                <link rel="stylesheet" href="/style/style.css">
                 <script src="/LK/order.js"></script>
             </div>
         </div>

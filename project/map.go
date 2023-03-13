@@ -335,7 +335,7 @@ func run() {
 	rout.HandleFunc("/api/guides/{id:[-a-z0-9]+}/", getGuideInfo).Methods("GET")
 
 	http.Handle("/", rout) // перенаправление на роутер
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":5000", nil)
 }
 
 func main() {
