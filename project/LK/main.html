@@ -25,7 +25,6 @@
             </div>
         </div>
         <div class="footer">
-            <script src="LK/script.js"></script>
             <div class="content-block">
                 <p><b>Список пешеходных маршрутов</b></p>
                 <input type="text" id="inut-route">
@@ -43,20 +42,8 @@
                           <th scope="col">Посмотреть маршрут</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {{ range .Arr }}
-                            <tr class="tr-route">
-                                <td class="td-select">{{ index . 1 }}</td>
-                                <td class="td-select">{{ index . 2 }}</td>
-                                <td class="td-select">{{ index . 3 }}</td>
-                                <td>
-                                    <button class="route" 
-                                            id onclick="window.location='/route/?data={{index . 4}}|{{index . 5}}'">
-                                        Посмотреть
-                                    </button>
-                                </td>
-                            </tr>
-                        {{ end }}
+                    <tbody id="tbd">
+                        <!-- подгрузка маршрутов ./load-data.js => loadRouts() -->
                     </tbody>
                 </table>
                 <div class="pag">
@@ -85,22 +72,12 @@
                         </tr>
                     </thead>
                     <tbody id="guides">
-                        {{ range .Guids}}
-                        <tr class="tr-guid">
-                            <td><img src="https://www.santarelli.com/wp-content/uploads/2015/11/PROFILE_685x685-02-H-02.png"></td>
-                            <td class="td-select"></td>
-                            <td class="td-select"></td>
-                            <td class="td-select"></td>
-                            <td><p class="price-hour td-select" id="pricePerHour"></p></td>
-                            <td><button class="bron" value="{{ index . 0 }}|{{ index . 4 }}">Бронировать</button></td>
-                        </tr>
-                        {{ end }}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="modal">
+    <div class="modal"> <!-- оформление заказов -->
         <div class="modal-window">
             <button class="btn-close">✖</button>
             <h1>Оформление заявки</h1>
@@ -144,13 +121,35 @@
 
         <div class="overlay"></div>
     </div>
-    <script src="LK/load-data.js"></script>
-    <script src="LK/modal.js"></script>
     <script src="LK/filter.js"></script>
     <script src="LK/pagination.js"></script>
+    <script src="LK/load-data.js"></script>
+    <script src="LK/modal.js"></script>
     <script defer>
-        document.getElementById("pg1").oninput();
-        lodData();
+        var paginfunc = getPagin();
+        var brBind = function () {
+            var btn = document.getElementsByClassName("bron");
+            
+            for (var i = 0; i < btn.length; i++) {
+                btn[i].onclick = function() {
+                    var guid = modal.getElementsByClassName("guid-name")[0];
+                    var routr = modal.getElementsByClassName("route-name")[0];
+                    var price = modal.getElementsByClassName("price")[0];
+                    var data_list = this.value.split("|")
+            
+                    guid.innerHTML = data_list[0];
+                    routr.innerHTML = data_list[1];
+                    price.innerHTML = this.parentNode.parentNode.getElementsByClassName("price-hour")[0].innerHTML;
+                    modal.style.display = "flex";
+                    modal.getElementsByClassName("btn-send")[0].id = "";
+            
+                    getPrice(modal.getElementsByClassName("price")[0].innerHTML, modal)
+                }
+            }
+        }
+        loadRouts(paginfunc);
+        loadGuids(brBind)
+        pagin();
     </script>
 </body>
 </html>

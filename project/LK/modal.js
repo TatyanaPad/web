@@ -11,6 +11,7 @@ var close = document.getElementsByClassName("btn-close");
 var cancel = document.getElementsByClassName("btn-cancel");
 var send = document.getElementsByClassName("btn-send");
 
+
 for (var i = 0; i < btn.length; i++) {
     btn[i].onclick = function() {
         var guid = modal.getElementsByClassName("guid-name")[0];
@@ -186,7 +187,7 @@ function clearModal() {
     var op1 = modal.getElementsByClassName("opt-1")[0];
     var op2 = modal.getElementsByClassName("opt-2")[0];
 
-    // atter
+    
     date.readOnly = false;
     time.readOnly = false;
     persons.readOnly = false;
