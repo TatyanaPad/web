@@ -27,12 +27,14 @@
         <div class="footer">
             <div class="content-block">
                 <p><b>Список пешеходных маршрутов</b></p>
-                <input type="text" id="inut-route">
-                <select id="select-route">
-                    <option value="0">Название</option>
-                    <option value="1">Описание</option>
-                    <option value="2">Подробнее</option>
-                </select>
+                <div class="select">
+                    <input type="text" id="inut-route">
+                    <select id="select-route">
+                        <option value="0">Название</option>
+                        <option value="1">Описание</option>
+                        <option value="2">Подробнее</option>
+                    </select>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -40,6 +42,7 @@
                           <th scope="col">Описание</th>
                           <th scope="col">Подробнее</th>
                           <th scope="col">Посмотреть маршрут</th>
+                          <th scope="col">Бронь</th>
                         </tr>
                     </thead>
                     <tbody id="tbd">
@@ -47,19 +50,29 @@
                     </tbody>
                 </table>
                 <div class="pag">
-                    <input id="pg1" min="1" max="3" placeholder="Номер страницы" value="1">
-                    <p id="pg1-p">из 3</p>
+                    <button id = "back"><</button>
+                    <p id="pg0-p">1</p>
+                    <p id="pg1-p">из  3</p>
+                    <button id = "front">></button>
+                    <input id="pg1" min="1" max="3" placeholder="Номер страницы" value="1" class="shad">
                 </div>
             </div>
             <div class="content-block">
-                <p><b>Доступные гиды</b></p>
-                <input type="text" id="inut-guides">
-                <select id="select">
-                    <option value="0">ФИО</option>
-                    <option value="1">Язык</option>
-                    <option value="2">Опыт работы</option>
-                    <option value="3">Цена за час</option>
-                </select>
+                <div class="guidP">
+                    <p><b>Доступные гиды&nbsp;</b></p>
+                    <p>[Маршрут:&nbsp;</b></p>
+                    <p id="routeName">Москва</p> 
+                    <p>]</p>
+                </div>
+                <div class="select">
+                    <input type="text" id="inut-guides">
+                    <select id="select">
+                        <option value="0">ФИО</option>
+                        <option value="1">Язык</option>
+                        <option value="2">Опыт работы</option>
+                        <option value="3">Цена за час</option>
+                    </select>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -125,6 +138,7 @@
     <script src="LK/pagination.js"></script>
     <script src="LK/load-data.js"></script>
     <script src="LK/modal.js"></script>
+    <script src="LK/ovarlayPagin.js"></script>
     <script defer>
         var paginfunc = getPagin();
         var brBind = function () {
@@ -136,9 +150,10 @@
                     var routr = modal.getElementsByClassName("route-name")[0];
                     var price = modal.getElementsByClassName("price")[0];
                     var data_list = this.value.split("|")
+                    routName = document.getElementById("routeName").innerHTML
             
                     guid.innerHTML = data_list[0];
-                    routr.innerHTML = data_list[1];
+                    routr.innerHTML = routName;
                     price.innerHTML = this.parentNode.parentNode.getElementsByClassName("price-hour")[0].innerHTML;
                     modal.style.display = "flex";
                     modal.getElementsByClassName("btn-send")[0].id = "";

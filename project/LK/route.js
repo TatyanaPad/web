@@ -8,12 +8,18 @@ document.getElementsByClassName("leaflet-bottom leaflet-left")[0].remove();
 document.getElementsByClassName("leaflet-bottom leaflet-right")[0].remove();
 
 function route(start, stop) {
+    start = start.split(">")
+    start = [parseFloat(start[0]), parseFloat(start[1])]
+    stop = stop.split(">")
+    stop = [parseFloat(stop[0]), parseFloat(stop[1])]
+    
     console.log(start, stop)
+
     let dir = MQ.routing.directions();
     dir.route({
         locations: [
-            start,
-            stop
+            {latLng: {lat: start[1], lng: start[0]}},
+            {latLng: {lat: stop[1], lng: stop[0]}}
         ]
     })
 

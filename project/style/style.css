@@ -241,4 +241,58 @@ td > img {
     justify-content: center;
     align-items: center;
     column-gap: 1vh;
+    grid-template-columns: auto auto auto auto;
+}
+
+.shad {
+    display: none;
+}
+
+.pag > button {
+    background-color: var(--color-button);
+    border-radius: 25%;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.2vh;
+}
+
+.select {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+
+.select > input {
+    border-top-left-radius: 1vh;
+    border-bottom-left-radius: 1vh;
+    padding-left: .5vh;
+    background-color: #1f2023;
+    color: #d3d4d5;
+    outline:none;
+    border-color: #494a4e;
+}
+.select > select {
+    border-top-right-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+
+    background-color: #1f2023;
+    color: #d3d4d5;
+    outline:none;
+    border-color: #494a4e;
+}
+
+.selectRou {
+    width: 100%;
+    height: 100%;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.2vh;
+    color: #000;
+    box-shadow: 0 0 1vh var(--color-button);
+    border-radius: 1vh;
+    border: 0;
+    background-color: var(--color-button);
+}
+
+.guidP {
+    display: flex;
+    justify-content: center;
 }

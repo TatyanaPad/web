@@ -18,14 +18,16 @@ for (var i = 0; i < btn.length; i++) {
         var routr = modal.getElementsByClassName("route-name")[0];
         var price = modal.getElementsByClassName("price")[0];
         var data_list = this.value.split("|")
+        routName = document.getElementById("routeName").innerHTML
 
         guid.innerHTML = data_list[0];
-        routr.innerHTML = data_list[1];
+        routr.innerHTML = routName;
         price.innerHTML = this.parentNode.parentNode.getElementsByClassName("price-hour")[0].innerHTML;
         modal.style.display = "flex";
         modal.getElementsByClassName("btn-send")[0].id = "";
 
         getPrice(modal.getElementsByClassName("price")[0].innerHTML, modal)
+        console.log("++");
     }
 }
 

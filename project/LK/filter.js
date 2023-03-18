@@ -26,6 +26,7 @@ input1.oninput = function () {
             routeTable[i].style.display = "";
         }
         document.getElementById("pg1").value = "1";
+        document.getElementById("pg0-p").value = "1";
         document.getElementById("pg1").oninput();
     }
 }

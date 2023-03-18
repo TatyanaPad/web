@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"map/data"
@@ -34,6 +35,8 @@ func route(w http.ResponseWriter, r *http.Request) {
 		Start: coordinations[0],
 		Stop:  coordinations[1],
 	}
+
+	fmt.Println(len(coordinations))
 
 	t, _ := template.ParseFiles("LK/route.html")
 	t.Execute(w, u)
